@@ -1,0 +1,57 @@
+CREATE DATABASE MovieDB
+GO
+USE MovieDB
+GO
+
+CREATE TABLE Directors
+(
+Id int IDENTITY,
+DirectorName varchar(250) NOT NULL, 
+Notes nvarchar(max)
+)
+
+CREATE TABLE Genres
+(
+Id int IDENTITY PRIMARY KEY, 
+GenreName varchar(50) NOT NULL,
+Notes nvarchar(max)
+)
+
+CREATE TABLE Categories
+(
+Id int IDENTITY PRIMARY KEY, 
+CategoryName varchar(50) NOT NULL, 
+Notes nvarchar(max)
+)
+
+CREATE TABLE Movies
+(
+Id int IDENTITY PRIMARY KEY, 
+Title varchar(200) NOT NULL, 
+DirectorId char, 
+CopyrightYear date NOT NULL, 
+Lenght int NOT NULL, 
+GendeId int, 
+CategoryId int NOT NULL, 
+Rating int NOT NULL, 
+Notes nvarchar(max)
+)
+
+ALTER TABLE Directors
+ADD PRIMARY KEY (ID)
+
+INSERT INTO Directors (DirectorName, Notes)
+VALUES ('Hans', 'Good'), ('Handes', 'Good'), ('Desha', 'Very Good'), ('HansBO', 'Good'), ('HansDO', 'Good')
+
+INSERT INTO Genres (GenreName, Notes)
+VALUES ('Alibaba', 'Good'), ('Alibali', 'Good'), ('Aliba', 'Very Good'), ('Alabala', 'Good'), ('Alaalaa', 'Good')
+
+INSERT INTO Categories (CategoryName, Notes)
+VALUES ('Ahaaal', 'Good'), ('Bahalll', 'Good'), ('Mahaall', 'Very Good'), ('Taahal', 'Good'), ('Zaharrll', 'Good')
+
+INSERT INTO Movies (Title, DirectorId, CopyrightYear, Lenght, GendeId, CategoryId, Rating, Notes)
+VALUES ('Asdwer', 23, '2017/01/01', 120, 34, 45, 10, 'Very Good'), 
+('Asdsrt', 2, '2016/01/01', 160, 36, 47, 9, 'Very Good'), 
+('Asdwer', 3, '2015/01/01', 180, 33, 44, 8, 'Very Good'),
+('Asdwer', 4, '2014/01/01', 190, 39, 49, 4, 'Good'), 
+('Asdwer', 5, '2013/01/01', 240, 31, 41, 6, 'Good')

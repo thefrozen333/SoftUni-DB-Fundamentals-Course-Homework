@@ -1,0 +1,20 @@
+CREATE PROC usp_TransferMoney(@senderId int, @receiverId int, @moneyAmount money) AS
+BEGIN
+	BEGIN TRANSACTION
+	UPDATE Accounts
+	SET Balance -= @moneyAmount
+	WHERE Id = @senderId
+	IF(@@ROWCOUNT <> 1 OR 
+			(SELECT Balance 
+			FROM Accounts
+			WHERE Accounts.Id = @senderId) < 0)
+	BEGIN
+	ROLLBACK
+	RAISERROR('Invalid account!', 16, 1)
+	RETURN
+	END
+	UPDATE Accounts
+	SET Balance += @moneyAmount
+	WHERE Id = @receiverId
+COMMIT
+END

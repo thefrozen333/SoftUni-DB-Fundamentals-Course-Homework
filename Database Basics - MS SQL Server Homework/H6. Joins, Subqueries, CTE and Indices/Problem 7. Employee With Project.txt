@@ -1,0 +1,6 @@
+SELECT TOP 5 e.EmployeeID, FirstName, p.Name
+FROM Employees AS e
+JOIN EmployeesProjects AS emp ON e.EmployeeID = emp.EmployeeID
+JOIN Projects AS p ON emp.ProjectID = p.ProjectID
+WHERE p.StartDate > CAST('2002/08/13' AS smalldatetime)	 AND p.EndDate IS NULL
+ORDER BY e.EmployeeID

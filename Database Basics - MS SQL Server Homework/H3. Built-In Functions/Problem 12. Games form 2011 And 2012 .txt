@@ -1,0 +1,4 @@
+SELECT TOP 50 Name, FORMAT(Start,'yyyy-MM-dd')
+FROM Games
+WHERE DATEPART(Year, Start) = 2011 OR DATEPART(Year, Start) = 2012
+ORDER BY Start, Name

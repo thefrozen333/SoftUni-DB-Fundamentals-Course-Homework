@@ -1,0 +1,4 @@
+CREATE PROC usp_GetTownsStartingWith(@startString nvarchar(50)) AS
+SELECT Name 
+FROM Towns 
+WHERE LOWER(Name) LIKE @startString + '%';

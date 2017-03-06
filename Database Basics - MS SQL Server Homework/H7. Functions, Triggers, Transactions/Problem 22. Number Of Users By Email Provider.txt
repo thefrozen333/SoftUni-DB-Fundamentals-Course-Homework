@@ -1,0 +1,6 @@
+SELECT SUBSTRING(Email,CHARINDEX('@', Email) + 1, 100) as 'Email Provider',
+COUNT(Username) AS 'Number of Users'
+FROM Users
+
+GROUP BY SUBSTRING(Email,CHARINDEX('@', Email) + 1, 100)
+ORDER BY COUNT(Username) DESC, SUBSTRING(Email,CHARINDEX('@', Email) + 1, 100)

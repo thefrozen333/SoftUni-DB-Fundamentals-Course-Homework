@@ -1,0 +1,15 @@
+UPDATE Countries
+SET CountryName = 'Burma'
+WHERE CountryName = 'Myanmar'
+ 
+INSERT INTO Monasteries VALUES ('Hanga Abbey', (SELECT CountryCode FROM Countries WHERE CountryName = 'Tanzania'))
+INSERT INTO Monasteries VALUES ('Myin-Tin-Daik', (SELECT CountryCode FROM Countries WHERE CountryName = 'Myanmar'))
+ 
+SELECT con.ContinentName, c.CountryName, COUNT(m.Id) AS 'MonasteriesCount' FROM Monasteries AS m
+    RIGHT OUTER JOIN Countries AS c
+    ON m.CountryCode = c.CountryCode
+    RIGHT OUTER JOIN Continents AS con
+    ON con.ContinentCode = c.ContinentCode
+WHERE c.IsDeleted = 0
+GROUP BY con.ContinentName, c.CountryName
+ORDER BY COUNT(m.Id) DESC, c.CountryName

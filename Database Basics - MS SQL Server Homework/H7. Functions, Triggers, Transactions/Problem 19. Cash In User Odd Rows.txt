@@ -1,0 +1,12 @@
+SELECT TOP(10)
+FirstName,
+LastName,
+Employees.DepartmentID
+FROM Employees
+LEFT JOIN (SELECT
+DepartmentID,
+AVG(Salary) AS AvgSalary
+FROM Employees
+GROUP BY DepartmentID) AS a
+ON Employees.DepartmentID = a.DepartmentID
+WHERE Employees.Salary > AvgSalary

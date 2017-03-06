@@ -1,0 +1,177 @@
+CREATE DATABASE HotelDB
+GO
+USE HotelDB
+GO
+
+CREATE TABLE Employees
+(
+	EmployeeId int IDENTITY PRIMARY KEY NOT NULL,
+	FirstName nvarchar(100) NOT NULL,
+	LastName nvarchar(100) NOT NULL,
+	Title nvarchar(100),
+	Notes nvarchar(max)
+)
+
+INSERT INTO Employees(FirstName,LastName)
+		VALUES('Ivan', 'Ivanov')
+
+INSERT INTO Employees(FirstName,LastName)
+		VALUES('Georgi', 'Georgiev')
+
+INSERT INTO Employees(FirstName,LastName)
+		VALUES('Pesho', 'Peshovski')
+
+CREATE TABLE Customers
+(
+	AccountNumber nvarchar(50) PRIMARY KEY NOT NULL,
+	FirstName nvarchar(100) NOT NULL,
+	LastName nvarchar(100) NOT NULL,
+	PhoneNumber nvarchar(30) NOT NULL,
+	EmergencyName nvarchar(100),
+	EmergencyNumber nvarchar(30),
+	Notes nvarchar(max)
+)
+
+INSERT INTO Customers(AccountNumber,FirstName,LastName,PhoneNumber)
+		VALUES( 14141414, 'Techo', 'Techov', '414141414')
+
+INSERT INTO Customers(AccountNumber,FirstName,LastName,PhoneNumber)
+		VALUES( 222222222, 'Miro', 'Mirov', '414221414')
+
+INSERT INTO Customers(AccountNumber,FirstName,LastName,PhoneNumber)
+		VALUES( 333333333, 'Vilin', 'Mitem', '1141414141')
+
+CREATE TABLE RoomStatus
+(
+	Id int IDENTITY PRIMARY KEY NOT NULL,
+	RoomStatus nvarchar(50) NOT NULL,
+	Notes nvarchar(max)
+)
+
+INSERT INTO RoomStatus(RoomStatus)
+		VALUES('IN USE')
+
+INSERT INTO RoomStatus(RoomStatus)
+		VALUES('VACANT')
+
+INSERT INTO RoomStatus(RoomStatus)
+		VALUES('RESERVED')
+
+CREATE TABLE RoomTypes
+(
+	Id int IDENTITY PRIMARY KEY NOT NULL,
+	RoomType nvarchar(50) NOT NULL,
+	Notes nvarchar(max)
+)
+
+INSERT INTO RoomTypes(RoomType)
+		VALUES('Single')
+
+INSERT INTO RoomTypes(RoomType)
+		VALUES('Double')
+
+INSERT INTO RoomTypes(RoomType)
+		VALUES('Apartment')
+
+
+CREATE TABLE BedTypes
+(
+	Id int IDENTITY PRIMARY KEY NOT NULL,
+	BedType nvarchar(50) NOT NULL,
+	Notes nvarchar(max)
+)
+
+INSERT INTO BedTypes(BedType)
+		VALUES('King Size')
+
+INSERT INTO BedTypes(BedType)
+		VALUES('Medium')
+
+INSERT INTO BedTypes(BedType)
+		VALUES('Small')
+
+CREATE TABLE Rooms
+(
+	RoomNumber int PRIMARY KEY NOT NULL,
+	RoomType int NOT NULL,
+	BedType int NOT NULL,
+	Rate int NOT NULL,
+	RoomStatus int NOT NULL,
+	Notes nvarchar(max)
+)
+
+INSERT INTO Rooms(RoomNumber,RoomType,BedType,Rate,RoomStatus)
+		VALUES(331,1,2,100,2)
+
+INSERT INTO Rooms(RoomNumber,RoomType,BedType,Rate,RoomStatus)
+		VALUES(221,2,1,150,3)
+
+INSERT INTO Rooms(RoomNumber,RoomType,BedType,Rate,RoomStatus)
+		VALUES(113,3,3,50,1)
+				
+
+CREATE TABLE Payments
+(
+	Id int IDENTITY PRIMARY KEY NOT NULL,
+	EmployeeId int NOT NULL,
+	PaymentDate datetime NOT NULL,
+	AccountNumber nvarchar(50) NOT NULL,
+	FirstDateOcuppied datetime NOT NULL,
+	LastDateOccupied datetime NOT NULL,
+	TotalDays int,
+	AmountCharged int NOT NULL,
+	TaxRate int,
+	TaxAmount money,
+	PaymentTotal money,
+	Notes nvarchar(max)
+)
+
+
+INSERT INTO Payments
+(EmployeeId, PaymentDate, AccountNumber, FirstDateOcuppied, 
+	LastDateOccupied, AmountCharged)
+		
+VALUES(1,'2016-05-05', '1415511515','2016-07-05','2016-07-10',222)
+
+INSERT INTO Payments
+(EmployeeId, PaymentDate, AccountNumber, FirstDateOcuppied, 
+	LastDateOccupied, AmountCharged)
+		
+VALUES(2,'2016-03-02', '1415511515','2016-03-10','2016-03-11',111)
+
+
+INSERT INTO Payments
+(EmployeeId, PaymentDate, AccountNumber, FirstDateOcuppied, 
+	LastDateOccupied, AmountCharged)
+		
+VALUES(3,'2016-02-03', '141414','2016-03-05','2016-03-10',333)
+
+CREATE TABLE Occupancies
+(
+	Id int PRIMARY KEY IDENTITY NOT NULL,
+	EmployeeId int NOT NULL,
+	DateOccupied datetime NOT NULL,
+	AccountNumber nvarchar(50) NOT NULL,
+	RoomNumber int NOT NULL,
+	RateApplied int NOT NULL,
+	PhoneCharge money,
+	Notes nvarchar(max)
+)
+
+INSERT INTO Occupancies
+(EmployeeId, DateOccupied, AccountNumber, RoomNumber, 
+	RateApplied)
+		
+VALUES(3,'2016-02-03', '141414', 333,331)
+
+INSERT INTO Occupancies
+(EmployeeId, DateOccupied, AccountNumber, RoomNumber, 
+	RateApplied)
+		
+VALUES(2,'2016-02-03', '14124', 133,321)
+
+INSERT INTO Occupancies
+(EmployeeId, DateOccupied, AccountNumber, RoomNumber, 
+	RateApplied)
+		
+VALUES(1,'2016-02-03', '133414', 2121,124)

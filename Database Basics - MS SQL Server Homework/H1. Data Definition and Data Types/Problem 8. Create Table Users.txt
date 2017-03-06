@@ -1,0 +1,24 @@
+CREATE TABLE Users
+(
+	Id int IDENTITY PRIMARY KEY NOT NULL,
+	Username varchar(30) UNIQUE NOT NULL,
+	Password varchar(26) NOT NULL,
+	Picture varbinary(max),
+	LastLoginTime datetime,
+	IsDeleted bit
+)
+
+INSERT INTO Users(Username,Password)
+VALUES('ivan','ggg1')
+
+INSERT INTO Users(Username,Password)
+VALUES('ggg1','ggg2')
+
+INSERT INTO Users(Username,Password)
+VALUES('radf1','rarar')
+
+INSERT INTO Users(Username,Password)
+VALUES('ivfasfasan','asfafssaf')
+
+INSERT INTO Users(Username,Password)
+VALUES('11141aaa','1414114')

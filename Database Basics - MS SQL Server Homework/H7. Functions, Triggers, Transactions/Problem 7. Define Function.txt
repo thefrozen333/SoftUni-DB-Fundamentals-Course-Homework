@@ -1,0 +1,11 @@
+CREATE FUNCTION ufn_IsWordComprised(@setOfLetters nvarchar(50), @word nvarchar(50))
+RETURNS bit
+AS
+BEGIN
+DECLARE @contains bit = 1;
+if(LOWER(@word) LIKE '%[^' + @setOfLetters + ']%')
+BEGIN
+	SET @contains = 0;
+END
+ RETURN @contains;
+END

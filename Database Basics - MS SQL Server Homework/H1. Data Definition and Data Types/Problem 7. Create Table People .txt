@@ -1,0 +1,46 @@
+CREATE TABLE People
+(
+	Id int IDENTITY PRIMARY KEY NOT NULL,
+	Name nvarchar(200) NOT NULL,
+	Picture varbinary(max),
+	Height decimal(9,2),
+	Weights decimal(9,2),
+	Gender char(256) NOT NULL,
+	Birthdate date Not Null,
+	Biography nvarchar(max)
+)
+
+INSERT INTO People(
+	Name,Height,Weights,Gender,BirthDate)
+VALUES
+(
+	'Gosh',100.00,150.00,'m','2000-11-11'
+)
+
+INSERT INTO People(
+	Name,Height,Weights,Gender,BirthDate)
+VALUES
+(
+	'Pesh',101.00,151.00,'m','2001-3-2'
+)
+
+INSERT INTO People(
+	Name,Height,Weights,Gender,BirthDate)
+VALUES
+(
+	'Lili',333.00,332.00,'f','1993-10-04'
+)
+
+INSERT INTO People(
+	Name,Height,Weights,Gender,BirthDate)
+VALUES
+(
+	'Ivanka',22.00,1.00,'f','2001-04-01'
+)
+
+INSERT INTO People(
+	Name,Height,Weights,Gender,BirthDate)
+VALUES
+(
+	'Meni',1011.00,1501.100,'f','1999-11-11'
+)

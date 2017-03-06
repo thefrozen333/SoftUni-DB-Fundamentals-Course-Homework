@@ -1,0 +1,3 @@
+SELECT *
+FROM Employees
+ORDER BY SALARY DESC, FirstName, LastName DESC, MiddleName

@@ -1,0 +1,122 @@
+CREATE DATABASE CarRental
+GO
+USE CarRental
+GO
+
+CREATE TABLE Categories
+(
+	CategoryId int IDENTITY PRIMARY KEY NOT NULL,
+	Category nvarchar(100) NOT NULL,
+	DailyRate int,
+	WeeklyRate int,
+	MonthlyRate int,
+	WeekendRate int
+)
+
+INSERT INTO Categories(Category)
+		VALUES('Something')
+
+INSERT INTO Categories(Category)
+		VALUES('Other')
+
+INSERT INTO Categories(Category)
+		VALUES('SomethingOther')
+
+CREATE TABLE Cars
+(
+	CarId int IDENTITY PRIMARY KEY NOT NULL,
+	PlateNumber nvarchar(20) NOT NULL,
+	Make nvarchar(50),
+	Model nvarchar(80),
+	CarYear int,
+	CategoryId int,
+	Doors int NOT NULL,
+	Picture varbinary(max),
+	Condition nvarchar(50) NOT NULL,
+	Available bit NOT NULL,
+)
+
+INSERT INTO Cars(PlateNumber,Doors,Condition,Available)
+		VALUES('1411515','2','good',1)
+
+INSERT INTO Cars(PlateNumber,Doors,Condition,Available)
+		VALUES('1414114','4','very good',0)
+
+INSERT INTO Cars(PlateNumber,Doors,Condition,Available)
+		VALUES('1411511','4','bad',1)
+
+CREATE TABLE Employees
+(
+	EmployeeId int IDENTITY PRIMARY KEY NOT NULL,
+	FirstName nvarchar(80) NOT NULL,
+	LastName nvarchar(80) NOT NULL,
+	Title nvarchar(60),
+	Notes nvarchar(max)
+)
+
+INSERT INTO Employees(FirstName,LastName)
+		VALUES('Ivan', 'Ivanov')
+
+INSERT INTO Employees(FirstName,LastName)
+		VALUES('Georgi', 'Georgiev')
+
+INSERT INTO Employees(FirstName,LastName)
+		VALUES('Pesho', 'Peshovski')
+
+CREATE TABLE Customers
+(
+	CustomerId int IDENTITY PRIMARY KEY NOT NULL,
+	DriverLicenseNumber nvarchar(60) NOT NULL,
+	FullName nvarchar(255) NOT NULL,
+	Adress nvarchar(100) NOT NULL,
+	City nvarchar(100) NOT NULL,
+	ZIPCode nvarchar(100),
+	Notes nvarchar(max)
+)
+
+INSERT INTO Customers(DriverLicenseNumber,FullName,Adress,City)
+		VALUES('14a4114', 'Techo Techov', 'Nqkude tam a1', 'Kaspichan')
+
+INSERT INTO Customers(DriverLicenseNumber,FullName,Adress,City)
+		VALUES('111415aa5', 'Mincho Minchev', 'Nqkude aaatam a1', 'Plovdiv')
+		
+INSERT INTO Customers(DriverLicenseNumber,FullName,Adress,City)
+		VALUES('1414a4114', 'Ribo Techov', 'Nqkude tamrrrra a1', 'Varna')				
+
+CREATE TABLE RentalOrders
+(
+	RentalOrdersId int IDENTITY PRIMARY KEY NOT NULL,
+	EmployeeId int NOT NULL,
+	CustomerId int NOT NULL,
+	CarId int NOT NULL,
+	TankLevel int,
+	KilometrageStart int NOT NULL,
+	KilometrageEnd int NOT NULL,
+	TotalKilometrage int,
+	StartDate datetime NOT NULL,
+	EndDate datetime NOT NULL,
+	TotalDays int,
+	RateApplied int NOT NULL,
+	TaxRate int,
+	OrderStatus nvarchar(100),
+	Notes nvarchar(max)
+)
+
+
+INSERT INTO RentalOrders
+(EmployeeId, CustomerId, CarId, KilometrageStart, 
+	KilometrageEnd, StartDate, EndDate, RateApplied)
+		
+VALUES(1, 2, 1, 1114,1150,'2016-05-05','2016-05-06',50)
+
+INSERT INTO RentalOrders
+(EmployeeId, CustomerId, CarId, KilometrageStart, 
+	KilometrageEnd, StartDate, EndDate, RateApplied)
+		
+VALUES(2, 1, 2, 444,446,'2016-03-03','2016-03-06',100)
+
+INSERT INTO RentalOrders
+(EmployeeId, CustomerId, CarId, KilometrageStart, 
+	KilometrageEnd, StartDate, EndDate, RateApplied)
+		
+VALUES(3, 3, 3, 1111,1147,'2016-01-02','2016-01-06',50)

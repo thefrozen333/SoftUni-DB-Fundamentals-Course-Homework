@@ -1,0 +1,11 @@
+SELECT c.CountryName, con.ContinentName,
+COUNT(r.Id) AS 'RiversCount', CASE
+WHEN SUM(r.Length) IS NULL THEN 0
+ELSE SUM(r.Length)
+END AS 'TotalLength'
+FROM Continents con
+FULL JOIN Countries c ON c.ContinentCode = con.ContinentCode
+FULL JOIN CountriesRivers cr ON cr.CountryCode = c.CountryCode
+FULL JOIN Rivers r ON r.Id = cr.RiverId
+GROUP BY c.CountryName, con.ContinentName
+ORDER BY COUNT(r.Id) DESC, SUM(r.Length) DESC, c.CountryName
